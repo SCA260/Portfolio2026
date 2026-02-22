@@ -1,22 +1,22 @@
-// Animation au scroll
-window.addEventListener('scroll', reveal);
+// Animation fluide au scroll (Intersection Observer)
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15 // Se déclenche quand 15% de l'élément est visible
+};
 
-function reveal() {
-    var reveals = document.querySelectorAll('.reveal');
-
-    for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var revealTop = reveals[i].getBoundingClientRect().top;
-        var revealPoint = 150;
-
-        if (revealTop < windowHeight - revealPoint) {
-            reveals[i].classList.add('active');
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Optionnel : arrête d'observer une fois affiché
         }
-    }
-}
+    });
+}, observerOptions);
 
-// Lancer l'animation au chargement pour la partie visible
-window.onload = reveal;
+document.querySelectorAll('.reveal').forEach(element => {
+    observer.observe(element);
+});
 
 // Menu Burger (Optionnel pour mobile)
 const burger = document.querySelector('.burger');
@@ -33,6 +33,7 @@ const carousels = document.querySelectorAll('.carousel-container');
 
 carousels.forEach(carousel => {
     const slides = carousel.querySelectorAll('.carousel-slide');
+    if(slides.length <= 1) return;
     const btnPrev = carousel.querySelector('.prev');
     const btnNext = carousel.querySelector('.next');
     let currentSlide = 0;
