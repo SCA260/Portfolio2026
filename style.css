@@ -117,7 +117,7 @@ h1 span { color: var(--accent); }
 .subtitle { font-size: 1.2rem; color: #94a3b8; margin-bottom: 20px; }
 
 /* Grid Projets */
-#projects { padding: 100px 10%; }
+#projects, #archives, #documents { padding: 100px 10%; }
 .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; }
 
 .projects-grid {
@@ -343,3 +343,14 @@ footer {
         transition: all 0.3s ease; 
     }
 }
+
+/* --- Projets précédents & documents --- */
+.section-subtitle { text-align: center; color: #94a3b8; margin: -30px 0 40px; }
+.carousel-slide.contain { object-fit: contain; background: #0b1220; }
+.tag.csharp { background: #22c55e; }
+.tag.clang { background: #64748b; }
+.tag.cpp { background: #ec4899; }
+.tag.python { background: #eab308; color: #0f172a; }
+.tag.figma { background: #f24e1e; }
+.tag.doc { background: #38bdf8; color: #0f172a; }
+.tag.d3 { color: #fff; }
